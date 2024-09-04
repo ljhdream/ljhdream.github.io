@@ -34,7 +34,7 @@
 
 <meta name="generator" content="Hexo 7.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><link rel="alternate" href="/atom.xml" title="JeoLiii的博客" type="application/atom+xml">
+<link rel="alternate" href="/atom.xml" title="JeoLiii的博客" type="application/atom+xml">
 </head>
 
 
@@ -488,6 +488,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -505,7 +508,7 @@
 <li><a target="_blank" rel="noopener" href="https://stevenjoezhang.github.io/live2d-widget/demo/login.html">login.html</a> to imitate the login interface of NPM</li>
 </ul>
 <h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><p>If you are a beginner or only need the basic functionality, you can simply add the following line of code to the <code>head</code> or <code>body</code> of your HTML page to load the widget:</p>
-<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>The placement of the code depends on how your website is built. For example, if you are using <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>, you need to add the above code to the template file of your theme. The modification process is similar for pages generated using various template engines.<br>If your website uses PJAX, since the widget does not need to be refreshed on every page, make sure to place the script outside the PJAX refresh area.</p>
 <p><strong>However, we strongly recommend configuring the widget yourself to make it more suitable for your website!</strong><br>If you are interested in customizing the widget, please refer to the detailed instructions below.</p>
 <h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><p>You can refer to the source code of <code>autoload.js</code> to see the available configuration options. <code>autoload.js</code> will automatically load three files: <code>waifu.css</code>, <code>live2d.min.js</code>, and <code>waifu-tips.js</code>. <code>waifu-tips.js</code> creates the <code>initWidget</code> function, which is the main function for loading the widget. The <code>initWidget</code> function accepts an object-type parameter as the configuration for the widget. The following are the available options:</p>
@@ -553,12 +556,14 @@
 </ul>
 <p>By default, the CSS selector rules in <code>waifu-tips.json</code> are effective for the Hexo <a target="_blank" rel="noopener" href="http://github.com/next-theme/hexo-theme-next">NexT theme</a>, but you may need to modify or add new content to make it suitable for your own website.<br><strong>Warning: The content in <code>waifu-tips.json</code> may not be suitable for all age groups or appropriate to access during work. Please ensure their suitability when using them.</strong></p>
 <p>To deploy the development testing environment of this project locally, you need to install Node.js and npm, then execute the following commands:</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/stevenjoezhang/live2d-widget.git</span><br><span class="line">npm install</span><br><span class="line">npm run build</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clone https://github.com/stevenjoezhang/live2d-widget.git
+<span class="token function">npm</span> <span class="token function">install</span>
+<span class="token function">npm</span> run build<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>If you have any questions, feel free to raise an issue. If you have any modification suggestions, welcome to submit a pull request.</p>
 <h2 id="Deploy"><a href="#Deploy" class="headerlink" title="Deploy"></a>Deploy</h2><p>After making modifications locally, you can deploy the modified project on a server or load it via a CDN for use on a webpage.</p>
 <h3 id="Using-CDN"><a href="#Using-CDN" class="headerlink" title="Using CDN"></a>Using CDN</h3><p>To customize the content, you can fork this repository and push the modified content to your own repository using <code>git push</code>. In this case, the usage method becomes:</p>
-<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://fastly.jsdelivr.net/gh/username/live2d-widget@latest/autoload.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://fastly.jsdelivr.net/gh/username/live2d-widget@latest/autoload.js<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>Replace <code>username</code> with your GitHub username. To ensure the content of the CDN is refreshed correctly, you need to create a new git tag and push it to the GitHub repository. Otherwise, <code>@latest</code> in the URL will still point to the previous version. Additionally, CDN itself has caching, so the changes may take some time to take effect. Relevant documentation:</p>
 <ul>
@@ -572,11 +577,11 @@
 <li>If you are deploying a static blog using Hexo or similar tools, place the code of this project in the blog’s source file directory (e.g., the <code>source</code> directory). When redeploying the blog, the relevant files will be automatically uploaded to the corresponding paths. To prevent these files from being incorrectly modified by Hexo plugins, you may need to set <code>skip_render</code>.</li>
 </ul>
 <p>Afterwards, the entire project can be accessed through your domain name. You can try opening the <code>autoload.js</code> and <code>live2d.min.js</code> files in your browser and confirm that their content is complete and correct.<br>If everything is normal, you can proceed to modify the constant <code>live2d_path</code> in <code>autoload.js</code> to the URL of the <code>live2d-widget</code> directory. For example, if you can access <code>live2d.min.js</code> through the following URL:</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://example.com/path/to/live2d-widget/live2d.min.js</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">https://example.com/path/to/live2d-widget/live2d.min.js<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>then modify the value of <code>live2d_path</code> to:</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://example.com/path/to/live2d-widget/</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">https://example.com/path/to/live2d-widget/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>Make sure to include the trailing <code>/</code> in the path.<br>Once done, add the following code to the interface where you want to add the live2d-widget:</p>
-<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://example.com/path/to/live2d-widget/autoload.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://example.com/path/to/live2d-widget/autoload.js<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>This will load the widget.</p>
 <h2 id="Thanks"><a href="#Thanks" class="headerlink" title="Thanks"></a>Thanks</h2><a target="_blank" rel="noopener" href="https://www.browserstack.com/">
   <picture>
@@ -1156,7 +1161,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">267</span>&nbsp;字
+                class="white-color">194</span>&nbsp;字
             
             
             
@@ -1186,8 +1191,8 @@
                     var years = days * 365;
                     var today = new Date();
                     var startYear = "2024";
-                    var startMonth = "7";
-                    var startDate = "2";
+                    var startMonth = "9";
+                    var startDate = "4";
                     var startHour = "0";
                     var startMinute = "0";
                     var startSecond = "0";
@@ -1367,7 +1372,7 @@ $(function () {
 
     <!-- 回到顶部按钮 -->
 <div id="backTop" class="top-scroll">
-    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!" title="返回顶部">
         <i class="fas fa-arrow-up"></i>
     </a>
 </div>
