@@ -341,12 +341,33 @@
 </div>
 
 
-<script>
-    // 每天切换 banner 图.  Switch banner image every day.
-    var bannerUrl = "/medias/banner/" + new Date().getDay() + '.jpg';
-    $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
-</script>
+    <script>
+        // 用 API 数据更新 banner 的函数
+        function updateBannerWithApi() {
+            var bannerUrl = "/medias/banner/" + new Date().getDay() + '.jpg';
 
+            // 示例 API 调用
+            fetch('https://api.ixiaowai.cn/api/api.php')
+                .then(response => response.json())
+                .then(data => {
+                    // 使用 API 数据（例如，更新 banner 文本）
+                    var bannerText = data.text || "默认 Banner 文本";
+                    $('.banner-text').text(bannerText);
+
+                    // 设置 banner 图片
+                    $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
+                })
+                .catch(error => {
+                    console.error('获取 API 数据时出错:', error);
+                    // 使用默认的 banner 图片
+                    $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
+                });
+        }
+
+        // 调用函数
+        updateBannerWithApi();
+    </script>
+    
 
     </div>
 </div>
